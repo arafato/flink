@@ -17,15 +17,10 @@
 
 package org.apache.flink.streaming.connectors.eventhub;
 
-import java.util.concurrent.ExecutorService;
-
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
-import org.apache.flink.streaming.connectors.eventhub.internals.LeaseManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.microsoft.azure.eventprocessorhost.*;
 
 /**
  * The Flink EventHub Consumer is an exactly-once parallel streaming data source that subscribes to multiple Azure Event Hubs
@@ -42,10 +37,7 @@ public class FlinkEventHubConsumer<T> extends RichParallelSourceFunction<T> {
 
 	@Override
 	public void run(SourceContext<T> ctx) throws Exception {
-		LeaseManager leaseManager = new LeaseManager();
-		// We are using the built-in thread pool of EventProcessorHost that is also managed by it.
-		ExecutorService executorService = (ExecutorService) FieldUtils.readDeclaredStaticField(EventProcessorHost.class, "executorService");
-		leaseManager.initialize(executorService);
+
 	}
 
 	@Override
