@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import static org.apache.flink.util.Preconditions.checkNotNull;
 
-public class EventhubPartition implements Serializable {
+public class EventHubPartition implements Serializable {
 	private static final long serialVersionUID = 9142527677273214949L;
 	private String eventhub;
 	private int partitionId;
 	private final int cachedHash;
 	
-	public EventhubPartition(String eventhub, int partitionId) {
+	public EventHubPartition(String eventhub, int partitionId) {
 		this.eventhub = checkNotNull(eventhub);
 		this.partitionId = partitionId;
 		
@@ -30,14 +30,14 @@ public class EventhubPartition implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "EventhubPartition{" +
+		return "EventHubPartition{" +
 				"eventhubName='" + this.eventhub + "'" +
 				", partitionId='" + this.partitionId + "'}";
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof EventhubPartition)) {
+		if (!(obj instanceof EventHubPartition)) {
 			return false;
 		}
 
@@ -45,7 +45,7 @@ public class EventhubPartition implements Serializable {
 			return true;
 		}
 
-		EventhubPartition other = (EventhubPartition) obj;
+		EventHubPartition other = (EventHubPartition) obj;
 
 		return this.eventhub.equals(other.getEventhubName()) && this.partitionId == other.getPartitionId();
 	}
