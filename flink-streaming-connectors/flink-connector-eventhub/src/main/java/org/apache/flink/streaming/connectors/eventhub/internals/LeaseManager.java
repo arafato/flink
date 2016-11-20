@@ -11,15 +11,15 @@ public class LeaseManager {
 	private RuntimeContext runtimeContext;
 	
 	private int indexOfThisConsumerSubtask;
+	private int numberOfParallelSubTasks;
 	
 	public LeaseManager(RuntimeContext runtimeContext) {
 		this.runtimeContext = checkNotNull(runtimeContext);
 		this.indexOfThisConsumerSubtask = runtimeContext.getIndexOfThisSubtask();
+		this.numberOfParallelSubTasks = runtimeContext.getNumberOfParallelSubtasks();
 	}
 	
-	public boolean ShouldThisSubtaskSubscribeTo(EventHubPartition partition,
-												int totalNumberOfConsumerSubtasks,
-												int indexOfThisConsumerSubtask) {
+	public boolean ShouldThisSubtaskSubscribeTo(EventHubPartition partition) {
 		throw new NotImplementedException();
 	}
 }
