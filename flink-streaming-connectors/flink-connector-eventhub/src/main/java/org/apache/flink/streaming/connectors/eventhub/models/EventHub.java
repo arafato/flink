@@ -36,6 +36,10 @@ public class EventHub {
 		this.initializePartitionIds();
 	}
 
+	public String getName() {
+		return this.eventHubName;
+	}
+
 	private void initializePartitionIds() throws Exception {
 		try {
 			String contentEncoding = StandardCharsets.UTF_8.name();
