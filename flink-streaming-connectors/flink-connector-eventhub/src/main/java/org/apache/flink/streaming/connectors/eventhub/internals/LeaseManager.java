@@ -19,7 +19,7 @@ public class LeaseManager {
 		this.numberOfParallelSubTasks = runtimeContext.getNumberOfParallelSubtasks();
 	}
 	
-	public boolean ShouldThisSubtaskSubscribeTo(EventHubPartition partition) {
+	public boolean shouldThisSubtaskSubscribeTo(EventHubPartition partition) {
 		throw new NotImplementedException();
 	}
 }
