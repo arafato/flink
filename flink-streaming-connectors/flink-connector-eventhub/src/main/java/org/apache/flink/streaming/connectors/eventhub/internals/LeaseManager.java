@@ -20,6 +20,6 @@ public class LeaseManager {
 	}
 	
 	public boolean shouldThisSubtaskSubscribeTo(EventHubPartition partition) {
-		throw new NotImplementedException();
+		return (partition.hashCode() % this.indexOfThisConsumerSubtask) == 0;
 	}
 }
