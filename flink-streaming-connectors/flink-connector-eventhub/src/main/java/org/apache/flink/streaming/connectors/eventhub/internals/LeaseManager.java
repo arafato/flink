@@ -11,15 +11,15 @@ public class LeaseManager {
 	private RuntimeContext runtimeContext;
 	
 	private int indexOfThisConsumerSubtask;
-	private int numberOfParallelSubTasks;
+	private int totalNumberOfParallelSubTasks;
 	
 	public LeaseManager(RuntimeContext runtimeContext) {
 		this.runtimeContext = checkNotNull(runtimeContext);
 		this.indexOfThisConsumerSubtask = runtimeContext.getIndexOfThisSubtask();
-		this.numberOfParallelSubTasks = runtimeContext.getNumberOfParallelSubtasks();
+		this.totalNumberOfParallelSubTasks = runtimeContext.getNumberOfParallelSubtasks();
 	}
 	
 	public boolean shouldThisSubtaskSubscribeTo(EventHubPartition partition) {
-		return (partition.hashCode() % this.indexOfThisConsumerSubtask) == 0;
+		return (Math.abs(partition.hashCode() % this.totalNumberOfParallelSubTasks)) == this.indexOfThisConsumerSubtask;
 	}
 }

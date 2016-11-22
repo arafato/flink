@@ -18,6 +18,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,7 +38,12 @@ public class EventHub {
 	}
 
 	public String getName() {
+
 		return this.eventHubName;
+	}
+
+	public List<EventHubPartition> getPartitions() {
+		return this.partitions;
 	}
 
 	private void initializePartitionIds() throws Exception {
