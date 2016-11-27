@@ -15,23 +15,23 @@ public class EventHubDataFetcher<T> {
 	private final Object checkpointLock;
 
 	private EventHubManager eventHubManager;
-	private LeaseManager leaseManager;
+	private PartitionManager partitionManager;
 
 	public EventHubDataFetcher(EventHubManager eventHubManager,
-							   LeaseManager leaseManager,
+							   PartitionManager partitionManager,
 							   SourceFunction.SourceContext sourceContext) {
 		this(eventHubManager,
-			 leaseManager,
+			 partitionManager,
 			 sourceContext,
 			 sourceContext.getCheckpointLock());
 	}
 
 	public EventHubDataFetcher(EventHubManager eventHubManager,
-							   LeaseManager leaseManager,
+							   PartitionManager partitionManager,
 							   SourceFunction.SourceContext sourceContext,
 							   Object checkpointLock) {
 		this.eventHubManager = eventHubManager;
-		this.leaseManager = leaseManager;
+		this.partitionManager = partitionManager;
 		this.sourceContext = sourceContext;
 		this.checkpointLock = checkpointLock;
 		this.populateSubscribedPartitions();
@@ -39,7 +39,7 @@ public class EventHubDataFetcher<T> {
 	
 	private void populateSubscribedPartitions() {
 		for (EventHubPartition partition: this.eventHubManager.getAllPartitions()) {
-			if (this.leaseManager.shouldThisSubtaskSubscribeTo(partition)) {
+			if (this.partitionManager.shouldThisSubtaskSubscribeTo(partition)) {
 				this.subscribedPartitions.add(partition);
 			}
 		}
